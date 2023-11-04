@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Swog_IdleR.png-1d6336ff1e3604e3e2dcda7cb6e8c977.stex"
+path="res://.import/Swog_Run.png-56e0f8315e51a8c78c69e5813af27224.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/swog/Swog_IdleR.png"
-dest_files=[ "res://.import/Swog_IdleR.png-1d6336ff1e3604e3e2dcda7cb6e8c977.stex" ]
+source_file="res://assets/swog/Swog_Run.png"
+dest_files=[ "res://.import/Swog_Run.png-56e0f8315e51a8c78c69e5813af27224.stex" ]
 
 [params]
 

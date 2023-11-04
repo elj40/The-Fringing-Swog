@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Swog_Walk2R.png-b586f39f5fab78cda0b6643c4ca95592.stex"
+path="res://.import/Swog_Air.png-b3dd421961f689d9d6d3d973b891ffe3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/swog/Swog_Walk2R.png"
-dest_files=[ "res://.import/Swog_Walk2R.png-b586f39f5fab78cda0b6643c4ca95592.stex" ]
+source_file="res://assets/swog/Swog_Air.png"
+dest_files=[ "res://.import/Swog_Air.png-b3dd421961f689d9d6d3d973b891ffe3.stex" ]
 
 [params]
 
