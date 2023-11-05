@@ -4,10 +4,11 @@ const GRAVITY = 300
 const TONGUE_PULL = 500;
 
 export(int) var move_speed = 100;
-export(int) var jump_power = -200;
-export(int) var DAMAGE_SPEED = 500;
+export(int) var jump_power = -250;
+export(int) var DAMAGE_SPEED = 375;
 var direction = 1;
-
+var dead:bool = false
+var fafb:bool = false
 
 var tongue_velocity = Vector2()
 var velocity = Vector2()
@@ -22,6 +23,9 @@ func _input(event):
 		else:
 			#$Tongue.release()
 			pass
+			
+func die():
+	get_tree().change_scene("res://scenes/Stage1.tscn")
 
 func rotate_swog():
 	var velocity_dir = atan2(velocity.y, velocity.x)
@@ -37,6 +41,8 @@ func rotate_swog():
 	$AnimatedSprite.set_rotation(sprite_dir)
 
 func _physics_process(delta):
+	if dead: return;
+	
 	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"):
 		velocity.x = 0;
 		
@@ -64,7 +70,8 @@ func _physics_process(delta):
 	
 	$AirEffect.flip_h = direction == -1;
 	$AirEffect.set_rotation(0)
-	$AirEffect.visible = velocity.length_squared() > DAMAGE_SPEED*DAMAGE_SPEED
+	fafb = velocity.length_squared() > DAMAGE_SPEED*DAMAGE_SPEED
+	$AirEffect.visible = fafb
 
 	if not grounded:
 		rotate_swog()
