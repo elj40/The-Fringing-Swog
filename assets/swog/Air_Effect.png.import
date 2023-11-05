@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Swog_JumpR.png-ee6d10d9e140a4e3af95498e658fe00e.stex"
+path="res://.import/Air_Effect.png-584421335fb22e6dd56b28648f591308.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/swog/Swog_JumpR.png"
-dest_files=[ "res://.import/Swog_JumpR.png-ee6d10d9e140a4e3af95498e658fe00e.stex" ]
+source_file="res://assets/swog/Air_Effect.png"
+dest_files=[ "res://.import/Air_Effect.png-584421335fb22e6dd56b28648f591308.stex" ]
 
 [params]
 

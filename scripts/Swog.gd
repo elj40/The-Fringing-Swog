@@ -5,6 +5,7 @@ const TONGUE_PULL = 500;
 
 export(int) var move_speed = 100;
 export(int) var jump_power = -200;
+export(int) var DAMAGE_SPEED = 500;
 var direction = 1;
 
 
@@ -27,6 +28,7 @@ func rotate_swog():
 	var sprite_dir = velocity_dir+PI
 	if direction == -1:
 		sprite_dir= velocity_dir
+	$AirEffect.set_rotation(sprite_dir)
 	if $Tongue.hooked:
 		var target_dir = $Tongue/Tip.global_position - global_position;
 		sprite_dir = atan2(target_dir.y, target_dir.x) + PI
@@ -51,10 +53,7 @@ func _physics_process(delta):
 		$AnimatedSprite.play("idle")
 		velocity.x = 0
 		
-	# Hook physics
-	if $Tongue.hooked:
-		var target_dir = $Tongue/Tip.global_position - global_position;
-		velocity += target_dir.normalized() * TONGUE_PULL * delta;
+
 		
 	if velocity.x > 0: 
 		direction = -1 
@@ -62,6 +61,10 @@ func _physics_process(delta):
 		direction = 1
 	$AnimatedSprite.flip_h = direction == -1;
 	$AnimatedSprite.set_rotation(0)
+	
+	$AirEffect.flip_h = direction == -1;
+	$AirEffect.set_rotation(0)
+	$AirEffect.visible = velocity.length_squared() > DAMAGE_SPEED*DAMAGE_SPEED
 
 	if not grounded:
 		rotate_swog()
@@ -69,7 +72,12 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and grounded:
 		velocity.y = jump_power
 		
-	
+		# Hook physics
+	if $Tongue.hooked:
+		var target_dir = $Tongue/Tip.global_position - global_position;
+		velocity += target_dir.normalized() * TONGUE_PULL * delta;
+		
+	if $Tongue.hooked or $Tongue.flying: $AnimatedSprite.play("mouth_open")
 		
 	velocity = move_and_slide(velocity, Vector2.UP)
 	velocity.y += GRAVITY * delta

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Swog_MouthR.png-68b1ea1cf3bcd53f5202119f74dfc37e.stex"
+path="res://.import/desert_tiles.png-edafd093413ad646ed712e82dfb800b7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/swog/Swog_MouthR.png"
-dest_files=[ "res://.import/Swog_MouthR.png-68b1ea1cf3bcd53f5202119f74dfc37e.stex" ]
+source_file="res://assets/swog/desert_tiles.png"
+dest_files=[ "res://.import/desert_tiles.png-edafd093413ad646ed712e82dfb800b7.stex" ]
 
 [params]
 

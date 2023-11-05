@@ -9,6 +9,9 @@ radius = 6.0
 
 [node name="Tongue" type="Node2D"]
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="TongueLinks" type="Sprite" parent="."]
 texture = ExtResource( 2 )
