@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/swog/Swog_Red_Idle.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Enemy.gd" type="Script" id=2]
@@ -70,10 +70,7 @@ animations = [ {
 "speed": 16.0
 } ]
 
-[sub_resource type="CircleShape2D" id=17]
-radius = 19.0263
-
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D" groups=["Enemy"]]
 z_index = -1
 collision_layer = 2
 collision_mask = 3
@@ -100,10 +97,4 @@ one_shot = true
 position = Vector2( -21, -26 )
 enabled = true
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 17 )
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

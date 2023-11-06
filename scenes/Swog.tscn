@@ -72,10 +72,13 @@ animations = [ {
 
 [node name="Swog" type="KinematicBody2D"]
 collision_layer = 2
+collision_mask = 3
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+ground_friction = 0.915
+DAMAGE_SPEED = 350
 
 [node name="Tongue" parent="." instance=ExtResource( 5 )]
 

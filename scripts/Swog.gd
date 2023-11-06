@@ -3,29 +3,27 @@ extends KinematicBody2D
 const GRAVITY = 300
 const TONGUE_PULL = 500;
 
-export(int) var move_speed = 100;
-export(int) var jump_power = -250;
-export(int) var DAMAGE_SPEED = 375;
+export(int) var MOVE_SPEED = 100;
+export(int) var JUMP_POWER = -250;
+export(float, 1) var ground_friction = 0.8;
+export(int) var FRICTION_SPEED = 100;
+export(int) var DAMAGE_SPEED = 100;
 var direction = 1;
 var dead:bool = false
 var fafb:bool = false
+
+var lives_left:int  = 0;
 
 var tongue_velocity = Vector2()
 var velocity = Vector2()
 func _ready():
 	pass # Replace with function body.
 	
-func _input(event):
-	if event is InputEventMouseButton:
-		if Input.is_mouse_button_pressed( 1 ):
-			#$Tongue.shoot(event.position -get_viewport().size*0.5)
-			pass
-		else:
-			#$Tongue.release()
-			pass
 			
 func die():
 	get_tree().change_scene("res://scenes/Stage1.tscn")
+	print("Swog died: ", lives_left)
+	lives_left += 1
 
 func rotate_swog():
 	var velocity_dir = atan2(velocity.y, velocity.x)
@@ -48,11 +46,11 @@ func _physics_process(delta):
 		
 	var grounded = is_on_floor()
 	if Input.is_action_pressed("ui_left"):
-		velocity.x -= move_speed*delta
+		velocity.x -= MOVE_SPEED*delta
 		direction = 1;
 		$AnimatedSprite.play("run")
 	elif Input.is_action_pressed("ui_right"):
-		velocity.x += move_speed*delta
+		velocity.x += MOVE_SPEED*delta
 		direction = -1
 		$AnimatedSprite.play("run")
 	elif grounded:
@@ -72,24 +70,37 @@ func _physics_process(delta):
 	$AirEffect.set_rotation(0)
 	fafb = velocity.length_squared() > DAMAGE_SPEED*DAMAGE_SPEED
 	$AirEffect.visible = fafb
-
+	
+	#Friction on the ground
+	if grounded and velocity.x > DAMAGE_SPEED:
+		velocity.x *= ground_friction;
+		
 	if not grounded:
 		rotate_swog()
 		$AnimatedSprite.play("air")
 	if Input.is_action_just_pressed("ui_accept") and grounded:
-		velocity.y = jump_power
+		velocity.y = JUMP_POWER
 		
-		# Hook physics
+	#Updating the tongue
+	# Hook physics
 	if $Tongue.hooked:
 		var target_dir = $Tongue/Tip.global_position - global_position;
 		velocity += target_dir.normalized() * TONGUE_PULL * delta;
-		
+	#Open mouth when swinging
 	if $Tongue.hooked or $Tongue.flying: $AnimatedSprite.play("mouth_open")
 		
+	#Update position and check collisions
 	velocity = move_and_slide(velocity, Vector2.UP)
 	velocity.y += GRAVITY * delta
 	
+	#kill enemies
+	kill_enemies()
+	
 
-	
-	
-	
+func kill_enemies():
+	if get_slide_count() > 0:
+		for i in range(get_slide_count()):
+			var body = get_slide_collision(i).collider;
+			if body.is_in_group("Enemy"):
+				if fafb: body.die()
+				else: die()
