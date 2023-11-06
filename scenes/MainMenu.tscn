@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/environment/desert/startDesert.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/PixelifySans/static/PixelifySans-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/swog/Swog_Air.png" type="Texture" id=3]
+[ext_resource path="res://assets/swog/Swog_Mouth_Open-1.png.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Button_Actions.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=2]
 
@@ -13,12 +15,10 @@ default_font = SubResource( 2 )
 size = 58
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=4]
-size = 32
-font_data = ExtResource( 2 )
-
 [sub_resource type="DynamicFont" id=5]
 size = 32
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
@@ -55,28 +55,34 @@ margin_top = 75.0
 margin_right = 720.0
 margin_bottom = 120.0
 alignment = 1
+script = ExtResource( 5 )
 
-[node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 297.0
-margin_right = 297.0
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 226.0
+margin_right = 360.0
 margin_bottom = 45.0
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/TextureButton2"]
-margin_right = 40.0
-margin_bottom = 14.0
-mouse_default_cursor_shape = 2
-custom_colors/font_color = Color( 0.811765, 0, 0.0761029, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 4 )
-text = "PLAY"
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 301.0
-margin_right = 423.0
-margin_bottom = 45.0
-custom_colors/font_color = Color( 1, 0, 0, 1 )
+focus_neighbour_right = NodePath("../Quit")
+custom_colors/font_color_focus = Color( 1, 0.984314, 0, 1 )
+custom_colors/font_color = Color( 0.811765, 0, 0.0745098, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.984314, 0, 1 )
+custom_constants/hseparation = 14
 custom_fonts/font = SubResource( 5 )
 text = "PLAY"
 icon = ExtResource( 3 )
 flat = true
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 364.0
+margin_right = 493.0
+margin_bottom = 45.0
+focus_neighbour_left = NodePath("../Play")
+custom_colors/font_color_focus = Color( 1, 0.984314, 0, 1 )
+custom_colors/font_color = Color( 0.811765, 0, 0.0745098, 1 )
+custom_constants/hseparation = 14
+custom_fonts/font = SubResource( 5 )
+text = "QUIT"
+icon = ExtResource( 4 )
+flat = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Play" to="MarginContainer/VBoxContainer/HBoxContainer" method="_on_Play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Quit" to="MarginContainer/VBoxContainer/HBoxContainer" method="_on_Quit_pressed"]
