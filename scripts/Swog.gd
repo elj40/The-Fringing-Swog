@@ -41,7 +41,9 @@ func rotate_swog():
 func _physics_process(delta):
 	if dead: return;
 	
-	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("ui_left") and velocity.x > 0: 
+		velocity.x = 0;
+	if Input.is_action_just_pressed("ui_right") and velocity.x < 0:
 		velocity.x = 0;
 		
 	var grounded = is_on_floor()
@@ -69,10 +71,10 @@ func _physics_process(delta):
 	$AirEffect.flip_h = direction == -1;
 	$AirEffect.set_rotation(0)
 	fafb = velocity.length_squared() > DAMAGE_SPEED*DAMAGE_SPEED
-	$AirEffect.visible = fafb
+	$AirEffect.visible = velocity.length_squared() > DAMAGE_SPEED*DAMAGE_SPEED*1.05
 	
 	#Friction on the ground
-	if grounded and velocity.x > DAMAGE_SPEED:
+	if grounded and abs(velocity.x) > DAMAGE_SPEED:
 		velocity.x *= ground_friction;
 		
 	if not grounded:
