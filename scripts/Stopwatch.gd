@@ -1,17 +1,12 @@
 extends Label
 
-var start_time;
-var current_time;
-
-func _ready():
-	start_time = Time.get_ticks_usec()
-	current_time = start_time
-	print(start_time)
-	pass
+var current_time: int = 0;
+var count: bool = true
 	
-func _process(_delta):
-	current_time = Time.get_ticks_usec()
-	text = microsecondsToTimeString(current_time-start_time)
+func _process(delta):
+	if not count: return;
+	current_time += int(delta*1000_000)
+	text = microsecondsToTimeString(current_time)
 
 #From ChatGPT
 func microsecondsToTimeString(microseconds):

@@ -10,9 +10,9 @@ export(int) var FRICTION_SPEED = 100;
 export(int) var DAMAGE_SPEED = 100;
 var direction = 1;
 var dead:bool = false
+var won:bool = false
 var fafb:bool = false
 
-var lives_left:int  = 0;
 
 var tongue_velocity = Vector2()
 var velocity = Vector2()
@@ -22,8 +22,6 @@ func _ready():
 			
 func die():
 	get_tree().change_scene("res://scenes/Stage1.tscn")
-	print("Swog died: ", lives_left)
-	lives_left += 1
 
 func rotate_swog():
 	var velocity_dir = atan2(velocity.y, velocity.x)
@@ -39,7 +37,7 @@ func rotate_swog():
 	$AnimatedSprite.set_rotation(sprite_dir)
 
 func _physics_process(delta):
-	if dead: return;
+	if dead or won: return;
 	
 	if Input.is_action_just_pressed("ui_left") and velocity.x > 0: 
 		velocity.x = 0;
@@ -106,3 +104,5 @@ func kill_enemies():
 			if body.is_in_group("Enemy"):
 				if fafb: body.die()
 				else: die()
+
+	
