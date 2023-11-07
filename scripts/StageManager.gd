@@ -20,6 +20,13 @@ func finish_level():
 	
 	current_time.count = false
 	complete_time.text = "Your time was " + current_time.text
+	
+	var time_to_finish = current_time.timeStringToMilliseconds(current_time.text)
+	
+	if time_to_finish < AutoScript.stage1_best_time:
+		AutoScript.stage1_best_time = time_to_finish
+		
+	print(AutoScript.stage1_best_time)
 
 func _on_Finish_body_entered(body):
 	if "Swog" in body.name:

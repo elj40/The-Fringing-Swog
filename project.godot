@@ -14,6 +14,10 @@ config/name="TheFringingSwog"
 run/main_scene="res://scenes/MainMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+AutoScript="*res://scripts/AutoScript.gd"
+
 [display]
 
 window/size/width=720
