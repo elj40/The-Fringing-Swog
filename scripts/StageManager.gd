@@ -35,7 +35,7 @@ func _on_Finish_body_entered(body):
 
 func _on_NextStage_pressed():
 	print("Next Stage")
-	get_tree().change_scene("res://scenes/Stage1.tscn")
+	get_tree().change_scene("res://scenes/DesertStage.tscn")
 
 
 func _on_MainMenu_pressed():
@@ -43,7 +43,7 @@ func _on_MainMenu_pressed():
 
 
 func _on_Reset_pressed():
-	get_tree().change_scene("res://scenes/Stage1.tscn")
+	get_tree().change_scene("res://scenes/DesertStage.tscn")
 	get_tree().paused = false
 	current_time.current_time = 0
 

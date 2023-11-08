@@ -21,7 +21,7 @@ func _ready():
 	
 			
 func die():
-	get_tree().change_scene("res://scenes/Stage1.tscn")
+	get_tree().change_scene("res://scenes/DesertStage.tscn")
 
 func rotate_swog():
 	var velocity_dir = atan2(velocity.y, velocity.x)
