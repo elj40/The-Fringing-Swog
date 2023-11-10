@@ -1,9 +1,11 @@
 extends Node2D
 
-export(NodePath) var complete_panel;
-export(NodePath) var complete_time;
-export(NodePath) var complete_nextstage;
-export(NodePath) var current_time;
+export(String) var next_stage;
+
+var complete_panel;
+var complete_time;
+var complete_nextstage;
+var current_time;
 
 func _ready():
 	complete_panel = $StageUI/PanelContainer
@@ -22,11 +24,15 @@ func finish_level():
 	complete_time.text = "Your time was " + current_time.text
 	
 	var time_to_finish = current_time.timeStringToMilliseconds(current_time.text)
+	var current_stage = get_tree().current_scene.name
 	
-	if time_to_finish < AutoScript.stage1_best_time:
-		AutoScript.stage1_best_time = time_to_finish
-		
-	print(AutoScript.stage1_best_time)
+	if "Swamp" in current_stage:
+		AutoScript.swamp_best_time = time_to_finish if time_to_finish<AutoScript.swamp_best_time else AutoScript.swamp_best_time
+	elif "Desert" in current_stage:
+		AutoScript.desert_best_time = time_to_finish if time_to_finish<AutoScript.desert_best_time else AutoScript.desert_best_time	
+	elif "Mountain" in current_stage:
+		AutoScript.mountain_best_time = time_to_finish if time_to_finish<AutoScript.mountain_best_time else AutoScript.mountain_best_time
+				
 
 func _on_Finish_body_entered(body):
 	if "Swog" in body.name:
@@ -35,15 +41,18 @@ func _on_Finish_body_entered(body):
 
 func _on_NextStage_pressed():
 	print("Next Stage")
-	get_tree().change_scene("res://scenes/DesertStage.tscn")
+# warning-ignore:return_value_discarded
+	get_tree().change_scene(next_stage)
 
 
 func _on_MainMenu_pressed():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/MainMenu.tscn")
 
 
 func _on_Reset_pressed():
-	get_tree().change_scene("res://scenes/DesertStage.tscn")
+# warning-ignore:return_value_discarded
+	get_tree().reload_current_scene()
 	get_tree().paused = false
 	current_time.current_time = 0
 

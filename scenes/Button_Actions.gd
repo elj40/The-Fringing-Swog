@@ -5,10 +5,10 @@ func _ready():
 	$Play.grab_focus()
 	pass
 
-
 func _on_Play_pressed():
 	#Put animation here
-	get_tree().change_scene("res://scenes/DesertStage.tscn")
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://scenes/SwampStage.tscn")
 
 
 func _on_Quit_pressed():

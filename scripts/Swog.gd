@@ -3,6 +3,7 @@ extends KinematicBody2D
 const GRAVITY = 300
 const TONGUE_PULL = 500;
 
+
 export(int) var MOVE_SPEED = 100;
 export(int) var JUMP_POWER = -250;
 export(float, 1) var ground_friction = 0.8;
@@ -21,7 +22,8 @@ func _ready():
 	
 			
 func die():
-	get_tree().change_scene("res://scenes/DesertStage.tscn")
+# warning-ignore:return_value_discarded
+	get_tree().reload_current_scene()
 
 func rotate_swog():
 	var velocity_dir = atan2(velocity.y, velocity.x)
