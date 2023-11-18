@@ -3,6 +3,7 @@ extends HBoxContainer
 
 func _ready():
 	$Play.grab_focus()
+	MusicController.play_music()
 	pass
 
 func _on_Play_pressed():

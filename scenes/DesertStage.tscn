@@ -584,7 +584,7 @@ font_data = ExtResource( 2 )
 [node name="Stage1" type="Node2D"]
 position = Vector2( -46, 80 )
 script = ExtResource( 6 )
-next_stage = "res://scenes/SwampStage.tscn"
+next_stage = "res://scenes/MountainStage.tscn"
 
 [node name="Level" type="TileMap" parent="."]
 position = Vector2( -20, -79 )

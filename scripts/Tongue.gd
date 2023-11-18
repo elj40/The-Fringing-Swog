@@ -40,4 +40,6 @@ func _physics_process(_delta):
 		hooked = true;
 		flying = false;
 		tip_pos = $Tip.global_position
+		$Splat.play()
+		
 		

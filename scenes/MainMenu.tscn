@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/environment/desert/startDesert.png" type="Texture" id=1]
+[ext_resource path="res://assets/environment/mountain/mountain_background.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/PixelifySans/static/PixelifySans-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/swog/Swog_Air.png" type="Texture" id=3]
 [ext_resource path="res://assets/swog/Swog_Mouth_Open-1.png.png" type="Texture" id=4]
@@ -25,7 +25,8 @@ font_data = ExtResource( 2 )
 [node name="CanvasLayer" type="CanvasLayer"]
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.5625, 0.5625 )
+position = Vector2( -8, -179 )
+scale = Vector2( 0.752766, 0.726182 )
 texture = ExtResource( 1 )
 centered = false
 
