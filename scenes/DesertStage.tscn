@@ -581,7 +581,7 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[node name="Stage1" type="Node2D"]
+[node name="Desert" type="Node2D"]
 position = Vector2( -46, 80 )
 script = ExtResource( 6 )
 next_stage = "res://scenes/MountainStage.tscn"
@@ -643,7 +643,6 @@ shape = SubResource( 12 )
 [node name="StageUI" type="CanvasLayer" parent="."]
 
 [node name="PanelContainer" type="PanelContainer" parent="StageUI"]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -664,25 +663,31 @@ size_flags_horizontal = 4
 alignment = 1
 
 [node name="StageComplete" type="Label" parent="StageUI/PanelContainer/VBoxContainer"]
-margin_top = 37.0
+margin_top = 23.0
 margin_right = 257.0
-margin_bottom = 76.0
+margin_bottom = 62.0
 custom_fonts/font = SubResource( 14 )
 text = "Stage Complete"
 align = 1
 
 [node name="Time" type="Label" parent="StageUI/PanelContainer/VBoxContainer"]
-margin_top = 80.0
+margin_top = 66.0
 margin_right = 257.0
-margin_bottom = 103.0
-custom_colors/font_color = Color( 0.819608, 0.568627, 0.933333, 1 )
-text = "Your time was xx:xx.xxx"
+margin_bottom = 89.0
+text = "Time:  xx:xx.xxx"
+align = 1
+
+[node name="BestTime" type="Label" parent="StageUI/PanelContainer/VBoxContainer"]
+margin_top = 93.0
+margin_right = 257.0
+margin_bottom = 116.0
+text = "Best: xx:xx.xxx"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StageUI/PanelContainer/VBoxContainer"]
-margin_top = 107.0
+margin_top = 120.0
 margin_right = 257.0
-margin_bottom = 134.0
+margin_bottom = 147.0
 
 [node name="NextStage" type="Button" parent="StageUI/PanelContainer/VBoxContainer/HBoxContainer"]
 margin_right = 111.0
