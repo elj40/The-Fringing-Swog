@@ -1,8 +1,8 @@
 extends Node
 
-var swamp_best_time:int = 99999999 
-var desert_best_time:int = 99999999 
-var mountain_best_time:int = 99999999 
+var swamp_best_time:int = 15000000
+var desert_best_time:int = 12303000 
+var mountain_best_time:int = 17041000 
 
 var loaded : bool = false;
 func save():
